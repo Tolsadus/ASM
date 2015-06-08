@@ -6,7 +6,7 @@
 /*   By: mroux <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 14:15:15 by mroux             #+#    #+#             */
-/*   Updated: 2015/02/19 16:19:34 by mroux            ###   ########.fr       */
+/*   Updated: 2015/06/08 18:07:40 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int		main()
 	printf("----------------------------------------------\n");
 	printf("ft_puts test\n");
 
-	ft_puts("Ceci est un test");
+	ft_puts("Ceci est un test\n");
 
 	printf("ft_puts with NULL : ");
 	ft_puts(NULL);
