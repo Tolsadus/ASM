@@ -1,27 +1,45 @@
 section .text
-	global _ft_strdup
-
-extern _malloc
-extern _ft_strlen
-extern _ft_memcpy
+    global _ft_strdup
+    extern _ft_strlen
+    extern _ft_memcpy
+    extern _ft_bzero
+    extern _malloc
 
 _ft_strdup:
-	jmp		strlen
-	jmp		malloking
-	jmp		copy
+    ; check rdi
+    cmp rdi, 0
+    je ret0
+    push rdi
 
-strlen:
-	push	rdi
-	call	_ft_strlen
+    ; get rdi length and save it
+    call _ft_strlen
+    push rax
 
-malloking:
-	push	rax
-	mov		rdi, rax
-	call	_malloc
+    ; malloc of 8 * (length + 1)
+    mov rdi, rax
+    inc rdi
+    imul rdi, 8
+    push rdi
+    call _malloc
+    pop rdi
 
-copy:
-	mov		rdi, rax
-	pop		rdx
-	pop		rsi
-	call	_ft_memcpy
-	ret
+    ; b_zero the string
+    mov rdi, rax
+    pop rsi
+    inc rsi
+    call _ft_bzero
+    push rsi
+
+    ; call memcpy
+    pop rdx
+    pop rsi
+    mov rdi, rax
+    call _ft_memcpy
+    jmp end
+
+ret0:
+    mov rax, 0
+    ret
+
+end:
+    ret
